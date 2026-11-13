@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gershon S | Gen AI Engineer</title>
+<meta name="description" content="Gershon S, Gen AI Engineer at OpsMonsters Pvt. Ltd. and first-year Computer Science student at Rathnam University, specialising in Generative AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#10141c; --bg-2:#161b26; --fg:#eef1f6; --muted:#9aa3b5; --line:#262d3b;
+  --accent:#ff7a1a; --accent-ink:#1a0d03; --accent-soft:rgba(255,122,26,.14);
+  --sq-a:#1b2130; --sq-b:#141924;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --wrap:1180px; --pad:clamp(20px,5vw,48px);
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f4f5f8; --bg-2:#ffffff; --fg:#121722; --muted:#5a6375; --line:#dde1ea;
+    --accent:#f26a00; --accent-ink:#ffffff; --accent-soft:rgba(242,106,0,.12);
+    --sq-a:#e6e9f0; --sq-b:#f8f9fb;
+    color-scheme:light;
+  }
+}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+
+/* ---------- Header ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+.header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;transition:background .25s,border-color .25s;border-bottom:1px solid transparent}
+.header.scrolled{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:var(--display);font-weight:800;font-size:20px;display:flex;align-items:center;gap:10px}
+.logo i{width:12px;height:12px;background:var(--accent);border-radius:3px;transform:rotate(45deg)}
+.links{display:flex;gap:6px;list-style:none}
+.links a{display:block;padding:8px 14px;border-radius:999px;font-weight:600;font-size:15px;color:var(--muted);transition:color .2s,background .2s}
+.links a:hover,.links a.active{color:var(--fg);background:var(--accent-soft)}
+.burger{display:none;width:44px;height:44px;border-radius:12px;position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:2px;background:var(--fg);transition:transform .25s,opacity .2s}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:26px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+/* ---------- Hero ---------- */
+.hero{padding:clamp(32px,7vw,80px) 0 clamp(48px,8vw,96px)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center}
+.status{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:14px;font-weight:600;color:var(--muted)}
+.status b{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 60%,transparent)}80%,100%{box-shadow:0 0 0 10px transparent}}
+.name{font-family:var(--display);font-weight:800;font-size:clamp(56px,11vw,144px);line-height:.92;letter-spacing:-.03em;margin:22px 0 18px}
+.name .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.name .ln span{display:inline-block;transform:translateY(105%);animation:rise .8s cubic-bezier(.2,.8,.2,1) forwards}
+.name .ln:nth-child(2) span{animation-delay:.08s;color:var(--accent)}
+@keyframes rise{to{transform:none}}
+.role{font-family:var(--display);font-weight:500;font-size:clamp(18px,2.2vw,24px);margin-bottom:14px}
+.lede{color:var(--muted);max-width:52ch;font-size:clamp(16px,1.6vw,18px)}
+.fade{opacity:0;transform:translateY(12px);animation:fadeUp .6s ease forwards}
+.d1{animation-delay:.25s}.d2{animation-delay:.35s}.d3{animation-delay:.45s}.d4{animation-delay:.55s}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;font-weight:700;font-size:16px;transition:transform .15s,background .2s,border-color .2s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:color-mix(in srgb,var(--accent) 88%,#fff)}
+.btn-ghost{border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent)}
+
+.board-card{position:relative;aspect-ratio:1;width:100%;max-width:480px;justify-self:end;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:var(--bg-2)}
+.board-card svg{width:100%;height:100%}
+.board-cap{position:absolute;left:14px;bottom:14px;right:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13px;font-weight:600}
+.board-cap span:last-child{color:var(--accent);font-variant-numeric:tabular-nums}
+.cell-v{fill:var(--accent);opacity:0;transition:opacity .25s}
+.cell-v.on{opacity:.2}
+#tour{fill:none;stroke:var(--accent);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.knight{font-size:62px;fill:var(--fg);text-anchor:middle;dominant-baseline:central;transition:transform .14s linear}
+
+/* ---------- Marquee ---------- */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding:20px 0;background:var(--bg-2)}
+.track{display:flex;width:max-content;animation:scroll 32s linear infinite}
+.track span{font-family:var(--display);font-weight:700;font-size:clamp(20px,3vw,32px);padding:0 28px;white-space:nowrap;display:flex;align-items:center;gap:56px}
+.track span::after{content:"";width:12px;height:12px;background:var(--accent);border-radius:3px;transform:rotate(45deg);margin-left:28px}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.marquee:hover .track{animation-play-state:paused}
+
+/* ---------- Sections ---------- */
+section.block{padding:clamp(64px,10vw,120px) 0}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(20px,4vw,64px);align-items:end;margin-bottom:clamp(32px,5vw,56px)}
+.h2{font-family:var(--display);font-weight:800;font-size:clamp(34px,5.5vw,64px);line-height:1;letter-spacing:-.02em}
+.head p{color:var(--muted);max-width:56ch}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.fact{padding:clamp(22px,3vw,32px);border-right:1px solid var(--line);background:var(--bg-2)}
+.fact:last-child{border-right:0}
+.fact .v{font-family:var(--display);font-weight:800;font-size:clamp(34px,4.4vw,52px);line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.fact .v.small{font-size:clamp(22px,2.6vw,30px);line-height:1.15}
+.fact p{margin-top:12px;color:var(--muted);font-weight:600;font-size:15px}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.skill{position:relative;padding:28px;border:1px solid var(--line);border-radius:20px;background:var(--bg-2);overflow:hidden;transition:border-color .25s,transform .25s}
+.skill:hover{border-color:var(--accent);transform:translateY(-3px)}
+.skill.wide{grid-column:span 2}
+.skill h3{font-family:var(--display);font-weight:700;font-size:22px;margin-bottom:8px}
+.skill p{color:var(--muted);font-size:15px}
+.skill .ic{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;margin-bottom:18px;color:var(--accent)}
+.skill .ic svg{width:22px;height:22px}
+
+/* Projects */
+.projects{list-style:none;border-top:1px solid var(--line)}
+.proj{border-bottom:1px solid var(--line)}
+.proj a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:clamp(24px,3.5vw,40px) 0;position:relative}
+.proj a::before{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform .35s cubic-bezier(.2,.8,.2,1);z-index:-1;border-radius:4px}
+.proj h3{font-family:var(--display);font-weight:700;font-size:clamp(24px,4vw,46px);line-height:1.05;transition:color .25s,transform .35s cubic-bezier(.2,.8,.2,1)}
+.proj p{color:var(--muted);margin-top:8px;max-width:60ch;transition:color .25s,transform .35s cubic-bezier(.2,.8,.2,1)}
+.proj .tag{font-size:14px;font-weight:700;padding:8px 14px;border-radius:999px;border:1px solid var(--line);white-space:nowrap;transition:all .25s}
+.projects{position:relative;z-index:0}
+.proj a:hover::before{transform:scaleY(1)}
+.proj a:hover h3,.proj a:hover p{color:var(--accent-ink);transform:translateX(16px)}
+.proj a:hover .tag{border-color:var(--accent-ink);color:var(--accent-ink);margin-right:16px}
+
+/* Experience */
+.exp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(20px,4vw,64px);padding:clamp(28px,4vw,44px);border-radius:24px;background:var(--accent);color:var(--accent-ink)}
+.exp h3{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.6vw,40px);line-height:1.05}
+.exp .co{font-weight:700;margin-top:10px;font-size:18px}
+.exp .now{display:inline-flex;margin-top:18px;padding:6px 14px;border-radius:999px;border:1.5px solid currentColor;font-weight:700;font-size:14px}
+.exp ul{list-style:none;display:grid;gap:12px;align-content:center}
+.exp li{display:flex;gap:12px;font-weight:600}
+.exp li::before{content:"";flex:none;width:8px;height:8px;margin-top:10px;background:currentColor;transform:rotate(45deg)}
+
+/* Academics */
+.acad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(20px,4vw,64px)}
+.uni{padding:28px;border:1px solid var(--line);border-radius:20px;background:var(--bg-2);align-self:start}
+.uni h3{font-family:var(--display);font-weight:700;font-size:24px;line-height:1.2}
+.uni p{color:var(--muted);margin-top:8px}
+.uni dl{margin-top:22px;display:grid;gap:12px}
+.uni dl div{display:flex;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid var(--line)}
+.uni dt{color:var(--muted)}.uni dd{font-weight:700;text-align:right}
+.courses{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.courses li{display:flex;align-items:center;gap:14px;padding:18px 20px;border:1px solid var(--line);border-radius:16px;font-weight:600;transition:border-color .2s,background .2s}
+.courses li:hover{border-color:var(--accent);background:var(--accent-soft)}
+.courses li::before{content:"";flex:none;width:10px;height:10px;border-radius:3px;background:var(--accent);transform:rotate(45deg)}
+
+/* Contact */
+.contact{text-align:center;padding:clamp(48px,8vw,96px) var(--pad);border:1px solid var(--line);border-radius:28px;background:radial-gradient(120% 120% at 50% 0%,var(--accent-soft),transparent 60%),var(--bg-2)}
+.contact .h2{font-size:clamp(34px,7vw,80px)}
+.contact p{color:var(--muted);margin:18px auto 30px;max-width:48ch}
+.contact .ctas{justify-content:center}
+footer{padding:36px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ---------- Chatbot ---------- */
+.chat-fab{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:80;width:62px;height:62px;border-radius:20px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;box-shadow:0 10px 30px color-mix(in srgb,var(--accent) 40%,transparent);transition:transform .2s}
+.chat-fab:hover{transform:translateY(-3px)}
+.chat-fab svg{width:28px;height:28px}
+.chat{position:fixed;right:20px;bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:90;width:min(390px,calc(100vw - 40px));height:min(580px,calc(100dvh - 130px));display:flex;flex-direction:column;background:var(--bg-2);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);transform-origin:bottom right;transform:scale(.9) translateY(10px);opacity:0;pointer-events:none;transition:transform .22s cubic-bezier(.2,.8,.2,1),opacity .18s}
+.chat.open{transform:none;opacity:1;pointer-events:auto}
+.chat-top{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.avatar{width:40px;height:40px;border-radius:12px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:14px;flex:none}
+.chat-top strong{display:block;font-size:15px}
+.chat-top small{color:var(--muted);font-size:13px}
+.chat-close{margin-left:auto;width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--muted)}
+.chat-close:hover{background:var(--accent-soft);color:var(--fg)}
+.msgs{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:10px;overscroll-behavior:contain}
+.msg{max-width:86%;padding:11px 15px;border-radius:16px;font-size:15px;line-height:1.5;animation:pop .2s ease}
+.msg.bot{background:var(--bg);border:1px solid var(--line);border-bottom-left-radius:6px;align-self:flex-start}
+.msg.user{background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:6px;align-self:flex-end;font-weight:600}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start;max-width:100%}
+.chip{padding:7px 12px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:600;transition:border-color .2s,background .2s}
+.chip:hover{border-color:var(--accent);background:var(--accent-soft)}
+.typing{display:flex;gap:4px;padding:14px 16px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{50%{opacity:.25}}
+.chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.chat-form input{flex:1;min-width:0;height:46px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;font-size:16px}
+.chat-form input:focus{outline:none;border-color:var(--accent)}
+.chat-form button{width:46px;height:46px;border-radius:12px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;flex:none}
+.chat-form button svg{width:20px;height:20px}
+
+/* ---------- Responsive ---------- */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .board-card{justify-self:center;max-width:420px}
+  .about-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fact:nth-child(2){border-right:0}
+  .fact:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .skill.wide{grid-column:span 2}
+  .head,.exp,.acad{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .burger{display:block}
+  .links{position:fixed;top:calc(72px + env(safe-area-inset-top,0px));left:0;right:0;flex-direction:column;gap:4px;padding:12px var(--pad) 24px;background:var(--bg);border-bottom:1px solid var(--line);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+  .links.open{transform:none;opacity:1;pointer-events:auto}
+  .links a{padding:14px 16px;font-size:17px;border-radius:12px}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .skills,.courses{grid-template-columns:1fr}
+  .skill.wide{grid-column:auto}
+  .proj a{grid-template-columns:1fr}
+  .proj .tag{justify-self:start}
+  .proj a:hover h3,.proj a:hover p{transform:translateX(10px)}
+  .proj a:hover .tag{margin-right:0;margin-left:10px}
+  .ctas .btn{flex:1 1 auto}
+  .chat{right:0;left:0;bottom:0;width:100%;height:100dvh;border-radius:0;border:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  .chat-fab.hidden{opacity:0;pointer-events:none}
+}
+@media (max-width:400px){
+  .about-grid{grid-template-columns:1fr}
+  .fact{border-right:0;border-bottom:1px solid var(--line)}
+  .fact:last-child{border-bottom:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal,.fade{opacity:1;transform:none}
+  .name .ln span{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <nav class="wrap nav" aria-label="Main">
+    <a href="#top" class="logo" aria-label="Gershon S, home"><i></i>Gershon</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="links"><span></span><span></span><span></span></button>
+    <ul class="links" id="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#academics">Academics</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="status fade"><b></b>Gen AI Engineer at OpsMonsters Pvt. Ltd.</span>
+        <h1 class="name" aria-label="Gershon S">
+          <span class="ln"><span>Gershon</span></span>
+          <span class="ln"><span>S.</span></span>
+        </h1>
+        <p class="role fade d1">Gen AI Engineer</p>
+        <p class="lede fade d2">First-year Computer Science student at Rathnam University, specialising in Generative AI. I build AI agents, agent orchestrators and AI Ops tooling with Python, Hermes and OpenClaw.</p>
+        <div class="ctas fade d3">
+          <a href="#projects" class="btn btn-primary">See my projects</a>
+          <button class="btn btn-ghost" data-open-chat>Ask my assistant</button>
+        </div>
+      </div>
+      <div class="board-card fade d4" aria-label="Animated knight's tour on a chessboard, a nod to the 2025 chess championship">
+        <svg viewBox="0 0 800 800" id="board" role="img" aria-hidden="true">
+          <g id="squares"></g><g id="visited"></g>
+          <polyline id="tour" points=""></polyline>
+          <text class="knight" id="knight" x="0" y="0">♞</text>
+        </svg>
+        <div class="board-cap"><span>Knight’s tour, planned move by move</span><span id="moveCount">0 / 64</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="track" id="track"></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h2">About me</h2>
+        <p>I’m a first-year Computer Science student at Rathnam University with a specialisation in Gen AI, and I already work as a Gen AI Engineer at OpsMonsters Pvt. Ltd. Outside code, I play chess competitively and won a championship in 2025.</p>
+      </div>
+      <div class="about-grid reveal">
+        <div class="fact"><div class="v" data-count="95" data-suffix="%">0%</div><p>Class 10 marks</p></div>
+        <div class="fact"><div class="v" data-count="80" data-suffix="%">0%</div><p>Class 12 marks</p></div>
+        <div class="fact"><div class="v small">Chess Champion</div><p>2025</p></div>
+        <div class="fact"><div class="v small">Year 1</div><p>B.Tech CS, Gen AI specialisation</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="block" id="skills" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h2">Skills</h2>
+        <p>The languages, frameworks and areas I work with day to day.</p>
+      </div>
+      <div class="skills">
+        <article class="skill wide reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M12 7.5v4M12 11.5 6.5 17M12 11.5l5.5 5.5"/></svg></div>
+          <h3>Agentic AI</h3>
+          <p>Building AI agents and orchestrators that coordinate multiple agents to complete tasks.</p>
+        </article>
+        <article class="skill reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12"/></svg></div>
+          <h3>Python</h3>
+          <p>My main language, including concurrent programming.</p>
+        </article>
+        <article class="skill reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 14h3"/></svg></div>
+          <h3>Hermes</h3>
+          <p>Agent framework I use for building AI agents.</p>
+        </article>
+        <article class="skill reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4c-2 2-3 5-1 8l2 2M17 4c2 2 3 5 1 8l-2 2M8 14l4 6 4-6"/></svg></div>
+          <h3>OpenClaw</h3>
+          <p>Agent framework I use for building AI agents.</p>
+        </article>
+        <article class="skill reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V4M3 20h18M7 15l4-5 3 3 6-7"/></svg></div>
+          <h3>Machine Learning</h3>
+          <p>Core ML concepts, backed by linear algebra and vector spaces.</p>
+        </article>
+        <article class="skill wide reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/></svg></div>
+          <h3>Prompt engineering, APIs and data pipelines</h3>
+          <p>AI developer tools, REST APIs and data engineering, from my coursework and my work.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="block" id="projects" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h2">Projects</h2>
+        <p>The three areas I’ve been building in.</p>
+      </div>
+      <ul class="projects">
+        <li class="proj reveal"><a href="#projects" onclick="return false" tabindex="-1">
+          <div><h3>Gen AI Agents Development</h3><p>Developing AI agents powered by large language models.</p></div>
+          <span class="tag">Agents</span></a></li>
+        <li class="proj reveal"><a href="#projects" onclick="return false" tabindex="-1">
+          <div><h3>AI Agents Orchestrator Development</h3><p>Developing an orchestrator that coordinates multiple AI agents.</p></div>
+          <span class="tag">Orchestration</span></a></li>
+        <li class="proj reveal"><a href="#projects" onclick="return false" tabindex="-1">
+          <div><h3>AI Ops</h3><p>Applying AI to IT operations.</p></div>
+          <span class="tag">Operations</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="block" id="experience" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h2">Experience</h2>
+        <p>Where I put my skills to work.</p>
+      </div>
+      <div class="exp reveal">
+        <div>
+          <h3>Gen AI Engineer</h3>
+          <p class="co">OpsMonsters Pvt. Ltd.</p>
+          <span class="now">Current role</span>
+        </div>
+        <ul>
+          <li>Working on Gen AI agents development</li>
+          <li>Working on AI agent orchestrator development</li>
+          <li>Working on AI Ops</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMICS -->
+  <section class="block" id="academics" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 class="h2">Academics</h2>
+        <p>Coursework from my first year in Computer Science.</p>
+      </div>
+      <div class="acad">
+        <div class="uni reveal">
+          <h3>Rathnam University</h3>
+          <p>Computer Science, specialising in Gen AI</p>
+          <dl>
+            <div><dt>Year</dt><dd>1st year</dd></div>
+            <div><dt>Class 12</dt><dd>80%</dd></div>
+            <div><dt>Class 10</dt><dd>95%</dd></div>
+            <div><dt>Chess</dt><dd>Champion 2025</dd></div>
+          </dl>
+        </div>
+        <ul class="courses reveal">
+          <li>AI Developer Tools and Prompt Engineering</li>
+          <li>Computer Organisation and Architecture</li>
+          <li>Data Engineering and Pipeline Architecture</li>
+          <li>Python and Concurrent Programming</li>
+          <li>API and REST API</li>
+          <li>Linear Algebra and Vector Spaces</li>
+          <li>Aptitude</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="block" id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact reveal">
+        <h2 class="h2">Let’s build something</h2>
+        <p>Open to conversations about Gen AI, agents and AI Ops.</p>
+        <div class="ctas" id="contactLinks"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© <span id="yr"></span> Gershon S</span><span>Gen AI Engineer</span></div></footer>
+
+<!-- CHATBOT -->
+<button class="chat-fab" id="chatFab" aria-label="Open FAQ assistant" aria-expanded="false" aria-controls="chat">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg>
+</button>
+<div class="chat" id="chat" role="dialog" aria-label="FAQ assistant" aria-modal="false">
+  <div class="chat-top">
+    <div class="avatar">GS</div>
+    <div><strong>Gershon’s assistant</strong><small>Answers questions about Gershon</small></div>
+    <button class="chat-close" id="chatClose" aria-label="Close assistant"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <form class="chat-form" id="chatForm" autocomplete="off">
+    <input id="chatInput" type="text" placeholder="Ask about skills, projects, marks…" aria-label="Your question" maxlength="300">
+    <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+</div>
+
+<!-- ===== FAQ DATA (edit this JSON to change chatbot answers) ===== -->
+<script type="application/json" id="faq-data">
+{
+  "fallback": "I can only answer questions about Gershon. Try one of these:",
+  "suggestions": ["What are his skills?", "What projects has he built?", "Where does he work?", "What were his 10th and 12th marks?"],
+  "faqs": [
+    {"id":"about","q":"Who is Gershon?","keywords":["who is","who are you","introduce","yourself","introduction","gershon","summary","bio","overview"],"a":"Gershon S is a Gen AI Engineer at OpsMonsters Pvt. Ltd. and a first-year Computer Science student at Rathnam University, specialising in Gen AI. He works with Python, Hermes, OpenClaw, ML and Agentic AI, and he won a chess championship in 2025."},
+    {"id":"name","q":"What is his name?","keywords":["name","called","full name"],"a":"His name is Gershon S."},
+    {"id":"designation","q":"What is his designation?","keywords":["designation","title","role","what does he do","profession","job title","what is he"],"a":"Gershon's designation is Gen AI Engineer."},
+    {"id":"work","q":"Where does he work?","keywords":["work","works","working","company","employer","current position","position","job","opsmonsters","ops monsters","employed","experience","currently"],"a":"Gershon currently works as a Gen AI Engineer at OpsMonsters Pvt. Ltd."},
+    {"id":"university","q":"Where does he study?","keywords":["university","college","rathnam","study","studies","studying","student","degree","which year","year","education","btech","b tech"],"a":"Gershon is a first-year Computer Science student at Rathnam University."},
+    {"id":"specialization","q":"What is his specialisation?","keywords":["specialization","specialisation","specializing","specialising","major","focus","gen ai","generative ai","generative"],"a":"Gershon's specialisation is Gen AI (Generative AI), as part of his Computer Science degree at Rathnam University."},
+    {"id":"skills","q":"What are his skills?","keywords":["skills","skill","tech stack","stack","technologies","tools","languages","know","expertise","strengths","capable"],"a":"Gershon's skills are Python, Hermes, OpenClaw, Machine Learning and Agentic AI. From his coursework he also has a grounding in prompt engineering, REST APIs, data pipelines, concurrent programming and linear algebra."},
+    {"id":"python","q":"Does he know Python?","keywords":["python","programming language","code","coding","concurrent","concurrency"],"a":"Yes. Python is Gershon's main language, and he has studied Python and Concurrent Programming as part of his coursework."},
+    {"id":"hermes","q":"Does he know Hermes?","keywords":["hermes"],"a":"Yes, Gershon works with Hermes for building AI agents."},
+    {"id":"openclaw","q":"Does he know OpenClaw?","keywords":["openclaw","open claw"],"a":"Yes, Gershon works with OpenClaw for building AI agents."},
+    {"id":"ml","q":"Does he know machine learning?","keywords":["machine learning","ml","models","model training"],"a":"Yes, Gershon knows Machine Learning, and he has studied Linear Algebra and Vector Spaces, which underpin it."},
+    {"id":"agentic","q":"Does he know Agentic AI?","keywords":["agentic","agentic ai","ai agents","agent","agents","autonomous"],"a":"Yes. Agentic AI is a core skill for Gershon: his projects cover Gen AI agents development and an AI agents orchestrator."},
+    {"id":"projects","q":"What projects has he built?","keywords":["projects","project","built","build","portfolio","made","created","work samples"],"a":"Gershon's projects are Gen AI Agents Development, AI Agents Orchestrator Development and AI Ops."},
+    {"id":"proj_agents","q":"Tell me about Gen AI Agents Development","keywords":["gen ai agents","agents development","agent development","agents project"],"a":"Gen AI Agents Development is Gershon's project on building AI agents powered by large language models."},
+    {"id":"proj_orch","q":"Tell me about the AI Agents Orchestrator","keywords":["orchestrator","orchestration","orchestrate","orchestrating","orchertator","multi agent","multiple agents","coordinate"],"a":"AI Agents Orchestrator Development is Gershon's project on building an orchestrator that coordinates multiple AI agents."},
+    {"id":"proj_aiops","q":"Tell me about AI Ops","keywords":["ai ops","aiops","ai operations","it operations","operations"],"a":"AI Ops is Gershon's project area focused on applying AI to IT operations."},
+    {"id":"academics","q":"What subjects does he study?","keywords":["academics","academic","subjects","subject","courses","course","coursework","curriculum","syllabus","papers","learning","classes"],"a":"Gershon's coursework includes AI Developer Tools and Prompt Engineering, Computer Organisation and Architecture, Data Engineering and Pipeline Architecture, Python and Concurrent Programming, API and REST API, Linear Algebra and Vector Spaces, and Aptitude."},
+    {"id":"prompt","q":"Does he know prompt engineering?","keywords":["prompt engineering","prompt","prompting","developer tools","ai developer tools"],"a":"Yes, Gershon has studied AI Developer Tools and Prompt Engineering."},
+    {"id":"coa","q":"Has he studied computer architecture?","keywords":["computer organisation","computer organization","architecture","hardware","coa"],"a":"Yes, Gershon has studied Computer Organisation and Architecture."},
+    {"id":"data","q":"Does he know data engineering?","keywords":["data engineering","data pipeline","pipeline","pipelines","etl","data"],"a":"Yes, Gershon has studied Data Engineering and Pipeline Architecture."},
+    {"id":"api","q":"Does he know APIs?","keywords":["api","apis","rest","rest api","restful","backend","endpoint"],"a":"Yes, Gershon has studied API and REST API design."},
+    {"id":"linalg","q":"Has he studied linear algebra?","keywords":["linear algebra","vector","vectors","vector spaces","matrix","matrices","math","maths","mathematics"],"a":"Yes, Gershon has studied Linear Algebra and Vector Spaces."},
+    {"id":"aptitude","q":"Has he studied aptitude?","keywords":["aptitude","reasoning","quantitative"],"a":"Yes, Aptitude is part of Gershon's coursework."},
+    {"id":"tenth","q":"What was his 10th mark?","keywords":["10th","10","tenth","class 10","sslc","secondary"],"a":"Gershon scored 95% in his 10th standard."},
+    {"id":"twelfth","q":"What was his 12th mark?","keywords":["12th","12","twelfth","class 12","hsc","higher secondary","plus two"],"a":"Gershon scored 80% in his 12th standard."},
+    {"id":"marks","q":"What are his marks?","keywords":["marks","mark","grades","grade","score","scores","scored","percentage","results","school","board exams","academic record","accomplished"],"a":"Gershon scored 95% in 10th standard and 80% in 12th standard."},
+    {"id":"chess","q":"Does he play chess?","keywords":["chess","champion","championship","tournament","hobby","hobbies","games","interests"],"a":"Yes. Gershon is the Chess Champion of 2025."},
+    {"id":"achievements","q":"What are his achievements?","keywords":["achievements","achievement","awards","award","accomplishments","honours","honors","won","wins"],"a":"Gershon's achievements include Chess Champion 2025, 95% in 10th standard and 80% in 12th standard, and working as a Gen AI Engineer at OpsMonsters Pvt. Ltd. in his first year of university."},
+    {"id":"contact","q":"How can I contact him?","keywords":["contact","reach","email","mail","phone","connect","linkedin","github","social","message him","get in touch"],"a":"You can reach Gershon through the links in the Contact section at the bottom of this page."},
+    {"id":"hire","q":"Is he open to opportunities?","keywords":["hire","hiring","available","availability","opportunities","opportunity","freelance","collaborate","collaboration","internship","open to"],"a":"Gershon is open to conversations about Gen AI, agents and AI Ops. Use the Contact section at the bottom of this page to get in touch."},
+    {"id":"bot","q":"What can you do?","keywords":["what can you do","help","who made you","are you a bot","chatbot","assistant","faq"],"a":"I'm a small FAQ assistant for this portfolio. Ask me about Gershon's skills, projects, work, studies, marks or achievements."}
+  ]
+}
+</script>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ===== Contact links: fill these in; empty ones are hidden ===== */
+const CONTACT = { email: "", linkedin: "", github: "" };
+
+$("#yr").textContent = new Date().getFullYear();
+
+/* ---------- Header + mobile menu ---------- */
+const header = $("#header"), burger = $("#burger"), links = $("#links");
+const onScroll = () => header.classList.toggle("scrolled", scrollY > 8);
+addEventListener("scroll", onScroll, { passive: true }); onScroll();
+const setMenu = open => { links.classList.toggle("open", open); burger.setAttribute("aria-expanded", open); burger.setAttribute("aria-label", open ? "Close menu" : "Open menu"); };
+burger.addEventListener("click", () => setMenu(!links.classList.contains("open")));
+$$("#links a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+
+/* active nav link */
+const navMap = new Map($$("#links a").map(a => [a.getAttribute("href").slice(1), a]));
+const secObs = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { navMap.forEach(a => a.classList.remove("active")); navMap.get(e.target.id)?.classList.add("active"); }
+}), { rootMargin: "-45% 0px -50% 0px" });
+navMap.forEach((_, id) => { const s = document.getElementById(id); s && secObs.observe(s); });
+
+/* ---------- Marquee ---------- */
+const skills = ["Python","Hermes","OpenClaw","Machine Learning","Agentic AI","Prompt Engineering","REST APIs","Data Pipelines","Concurrent Programming","Linear Algebra"];
+const row = skills.map(s => `<span>${s}</span>`).join("");
+$("#track").innerHTML = row + row;
+
+/* ---------- Reveal + counters ---------- */
+const countUp = el => {
+  const end = +el.dataset.count, suf = el.dataset.suffix || "";
+  if (reduced) { el.textContent = end + suf; return; }
+  const t0 = performance.now(), dur = 900;
+  const tick = t => { const p = Math.min((t - t0) / dur, 1); el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suf; p < 1 && requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+};
+const revObs = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add("in");
+  $$("[data-count]", e.target).forEach(countUp);
+  revObs.unobserve(e.target);
+}), { threshold: 0, rootMargin: "0px 0px -8% 0px" });
+$$(".reveal").forEach(el => revObs.observe(el));
+
+/* ---------- Contact ---------- */
+const cl = $("#contactLinks"); const items = [];
+if (CONTACT.email) items.push(`<a class="btn btn-primary" href="mailto:${CONTACT.email}">Email me</a>`);
+if (CONTACT.linkedin) items.push(`<a class="btn btn-ghost" href="${CONTACT.linkedin}" target="_blank" rel="noopener">LinkedIn</a>`);
+if (CONTACT.github) items.push(`<a class="btn btn-ghost" href="${CONTACT.github}" target="_blank" rel="noopener">GitHub</a>`);
+items.push(`<button class="btn ${items.length ? "btn-ghost" : "btn-primary"}" data-open-chat>Ask my assistant</button>`);
+cl.innerHTML = items.join("");
+
+/* ---------- Knight's tour (Warnsdorff) ---------- */
+const N = 8, S = 100;
+const sq = $("#squares"), vis = $("#visited");
+let sqHTML = "", visHTML = "";
+for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
+  sqHTML += `<rect x="${c*S}" y="${r*S}" width="${S}" height="${S}" fill="var(${(r+c)%2 ? "--sq-a" : "--sq-b"})"/>`;
+  visHTML += `<rect class="cell-v" id="v${r*N+c}" x="${c*S}" y="${r*S}" width="${S}" height="${S}"/>`;
+}
+sq.innerHTML = sqHTML; vis.innerHTML = visHTML;
+const D = [[1,2],[2,1],[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1],[-1,2]];
+const ok = (r,c,b) => r>=0 && c>=0 && r<N && c<N && b[r][c]<0;
+const deg = (r,c,b) => D.filter(([dr,dc]) => ok(r+dr,c+dc,b)).length;
+function tour(sr, sc) {
+  const b = Array.from({length:N}, () => Array(N).fill(-1));
+  let r = sr, c = sc; b[r][c] = 0; const path = [[r,c]];
+  for (let i = 1; i < N*N; i++) {
+    let best = null, bd = 9;
+    for (const [dr,dc] of D) { const nr=r+dr, nc=c+dc; if (ok(nr,nc,b)) { const d = deg(nr,nc,b); if (d < bd) { bd = d; best = [nr,nc]; } } }
+    if (!best) return null;
+    [r,c] = best; b[r][c] = i; path.push(best);
+  }
+  return path;
+}
+const starts = [[0,0],[0,7],[7,7],[7,0],[3,4],[4,3]];
+const poly = $("#tour"), knight = $("#knight"), mc = $("#moveCount");
+let si = 0;
+function runTour() {
+  let path = null;
+  for (let k = 0; k < starts.length && !path; k++) path = tour(...starts[(si + k) % starts.length]);
+  si++;
+  if (!path) return;
+  $$(".cell-v", vis).forEach(x => x.classList.remove("on"));
+  const pts = path.map(([r,c]) => `${c*S+S/2},${r*S+S/2}`);
+  const place = i => {
+    const [r,c] = path[i];
+    knight.setAttribute("transform", `translate(${c*S+S/2} ${r*S+S/2})`);
+    $("#v"+(r*N+c)).classList.add("on");
+    poly.setAttribute("points", pts.slice(0, i+1).join(" "));
+    mc.textContent = `${i+1} / 64`;
+  };
+  if (reduced) { path.forEach((_, i) => place(i)); return; }
+  let i = 0; place(0);
+  const step = () => {
+    if (document.hidden) return setTimeout(step, 400);
+    i++;
+    if (i < path.length) { place(i); setTimeout(step, 140); }
+    else setTimeout(runTour, 2200);
+  };
+  setTimeout(step, 700);
+}
+runTour();
+
+/* ---------- FAQ chatbot ---------- */
+const DATA = JSON.parse($("#faq-data").textContent);
+const STOP = new Set("a an the is are was were be been of to in on at for and or does do did can could would should will he his him she her they their it its i me my you your what whats which who whom how about tell please give know".split(" "));
+const norm = t => t.toLowerCase().replace(/[’']/g,"").replace(/[^a-z0-9%\s]/g," ").replace(/\s+/g," ").trim();
+const stem = w => w.length > 4 ? w.replace(/(ings|ing|ies|es|ed|s)$/,"") : w;
+const toks = t => norm(t).split(" ").filter(w => w && !STOP.has(w)).map(stem);
+function lev(a, b) {
+  if (Math.abs(a.length - b.length) > 2) return 9;
+  const d = Array.from({length:a.length+1}, (_, i) => [i]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++)
+  {
+    d[i][j] = Math.min(d[i-1][j]+1, d[i][j-1]+1, d[i-1][j-1] + (a[i-1] === b[j-1] ? 0 : 1));
+    if (i > 1 && j > 1 && a[i-1] === b[j-2] && a[i-2] === b[j-1]) d[i][j] = Math.min(d[i][j], d[i-2][j-2] + 1);
+  }
+  return d[a.length][b.length];
+}
+const near = (a, b) => a === b || (a.length >= 4 && b.length >= 4 && lev(a, b) <= (Math.max(a.length,b.length) >= 8 ? 2 : 1));
+
+// Each FAQ's vocabulary = tokens of its keywords + question. Rare tokens weigh more (IDF).
+const INDEX = DATA.faqs.map(f => ({
+  f,
+  vocab: [...new Set([...f.keywords.flatMap(toks), ...toks(f.q)])],
+  multi: f.keywords.map(norm).filter(k => k.includes(" ")).map(k => " " + k + " ")
+}));
+const DF = {};
+INDEX.forEach(({ vocab }) => vocab.forEach(t => { DF[t] = (DF[t] || 0) + 1; }));
+const idf = t => Math.log(1 + INDEX.length / (DF[t] || 1));
+
+function score(text) {
+  const n = " " + norm(text) + " ", ut = [...new Set(toks(text))];
+  return INDEX.map(({ f, vocab, multi }) => {
+    let s = 0;
+    for (const u of ut) {
+      let best = 0;
+      for (const v of vocab) if (near(u, v)) best = Math.max(best, idf(v) * (u === v ? 1 : 0.85));
+      s += best;
+    }
+    for (const m of multi) if (n.includes(m)) s += 2;
+    return { f, s };
+  }).sort((a, b) => b.s - a.s);
+}
+
+const GREET = /^(hi|hii+|hello|hey|heya|yo|hola|good (morning|afternoon|evening)|namaste|vanakkam)\b/;
+const THANKS = /\b(thanks|thank you|thx|ty|cool|great|awesome|nice)\b/;
+const BYE = /\b(bye|goodbye|see you|cya)\b/;
+
+function answer(text) {
+  const n = norm(text);
+  if (!n) return { a: "Type a question about Gershon and I’ll answer it.", chips: DATA.suggestions };
+  const ranked = score(text), top = ranked[0];
+  const has10 = /\b(10|10th|tenth|sslc)\b/.test(n), has12 = /\b(12|12th|twelfth|hsc|plus two)\b/.test(n);
+  if (has10 && has12) return { a: DATA.faqs.find(f => f.id === "marks").a };
+  if (top.s >= 1.6) {
+    if ((top.f.id === "tenth" && !has10) || (top.f.id === "twelfth" && !has12)) return { a: DATA.faqs.find(f => f.id === "marks").a };
+    return { a: top.f.a };
+  }
+  if (!toks(text).length && /\b(about|him|he|gershon)\b/.test(n) && !GREET.test(n)) return { a: DATA.faqs.find(f => f.id === "about").a };
+  if (GREET.test(n)) return { a: "Hi! I’m Gershon’s FAQ assistant. What would you like to know?", chips: DATA.suggestions };
+  if (BYE.test(n)) return { a: "Thanks for stopping by!" };
+  if (THANKS.test(n)) return { a: "Glad to help. Anything else you’d like to know?" };
+  return { a: DATA.fallback, chips: DATA.suggestions };
+}
+
+const chat = $("#chat"), fab = $("#chatFab"), msgs = $("#msgs"), form = $("#chatForm"), input = $("#chatInput");
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const scrollDown = () => { msgs.scrollTop = msgs.scrollHeight; };
+function addMsg(text, who) { const d = document.createElement("div"); d.className = "msg " + who; d.textContent = text; msgs.appendChild(d); scrollDown(); }
+function addChips(list) {
+  const w = document.createElement("div"); w.className = "chips";
+  w.innerHTML = list.map(q => `<button class="chip" type="button">${esc(q)}</button>`).join("");
+  w.addEventListener("click", e => { const b = e.target.closest(".chip"); if (b) ask(b.textContent); });
+  msgs.appendChild(w); scrollDown();
+}
+function ask(q) {
+  q = q.trim(); if (!q) return;
+  addMsg(q, "user"); input.value = "";
+  const t = document.createElement("div"); t.className = "msg bot typing"; t.innerHTML = "<i></i><i></i><i></i>";
+  msgs.appendChild(t); scrollDown();
+  const r = answer(q);
+  setTimeout(() => { t.remove(); addMsg(r.a, "bot"); r.chips && addChips(r.chips); }, reduced ? 0 : 260);
+}
+let greeted = false;
+function setChat(open) {
+  chat.classList.toggle("open", open);
+  fab.setAttribute("aria-expanded", open);
+  fab.classList.toggle("hidden", open);
+  if (open) {
+    if (!greeted) { greeted = true; addMsg("Hi! I’m Gershon’s FAQ assistant. Ask me anything about his skills, projects, work or studies.", "bot"); addChips(DATA.suggestions); }
+    if (matchMedia("(min-width:601px)").matches) setTimeout(() => input.focus(), 50);
+  } else fab.focus({ preventScroll: true });
+}
+fab.addEventListener("click", () => setChat(!chat.classList.contains("open")));
+$("#chatClose").addEventListener("click", () => setChat(false));
+document.addEventListener("click", e => { if (e.target.closest("[data-open-chat]")) setChat(true); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") { chat.classList.contains("open") && setChat(false); setMenu(false); } });
+form.addEventListener("submit", e => { e.preventDefault(); ask(input.value); });
+})();
+</script>
+</body>
+</html>
